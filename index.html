@@ -1,0 +1,58 @@
+<!-- modale regles du jeu avec btn comencer la partie = new game
+btn stop game qui annonce le joueur
+possibilité de donner un nom au joueur 
+possibilité de donner un nbre point max -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+    <div class="new_game" ></div>
+    <button id="new_game">New game</button>
+    <button id="rules">Rules</button>
+    <button id="stop_game">stop game</button>
+    <div class="player">
+        <div >
+            <p id="player_1" class="player_1">Player 1</p>
+        </div>
+        <div class="score_p_0" >
+            <p id="global_score_p_0" >score</p>
+        </div>
+        <div class="current_score" >
+            <p >current <span id="current_score_p_0"></span></p>
+        </div>
+    </div>
+    <div class="dice">
+        <div class="dice" >
+            <img class="dice" id="dice" src="img/dice_1.svg">
+        </div>
+        <div class="roll_dice" >
+                <button id="roll_dice">roll dice</button>
+        </div>
+        <div class="hold" >
+            <button id="hold">hold</button>
+        </div>
+        
+    </div>
+    <div class="player">
+        <div class="player_2" >
+            <p id="player_2">Player 2</p>
+        </div>
+        <div class="score_p_2" >
+            <p id="global_score_p_1">score</p>
+        </div>
+        <div class="current_score" >
+            <p >current <span id="current_score_p_1"></span></p>
+        </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
