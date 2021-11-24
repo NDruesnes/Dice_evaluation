@@ -1,3 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
+
+.selector-for-some-widget {
+    box-sizing: content-box;
+  }  
 body{
-/* background-color: red; */
+    text-transform: uppercase;
+    color: #303030;
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
+    background-color: #905a46;
+    background-image: linear-gradient(304deg, #905a46 0%, #f5b26a 50%, #ffb946 100%);
+    height: 100vh;
+    width: 100vw;
+}
+.game{
+    background: linear-gradient(to top , #f7f7f7 50% , #ffffff 50%);
+    height: 100vh;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+button{
+    border: none;
+    text-transform: uppercase;
+    background: none;
+    color: #646464;
+}
+.dice-action{
+    margin-top: 40px;
+}
+/* #new_game:hover{
+    border: #e65757 1px solid;
+    color: #e65757;
+} */
+.dice{
+    box-shadow: 10px 8px 31px 6px rgba(119, 119, 119, 0.33);
+    -moz-box-shadow: 10px 8px 31px 6px rgba(119, 119, 119, 0.33);
+    -webkit-box-shadow: 10px 8px 31px 6px rgba(119, 119, 119, 0.33);
+}
+
+#roll_dice, #hold, #stop_game{
+    padding: 5px;
+}
+
+.roll_dice{
+    margin-top: 15px;
+}
+.player{
+    text-align: center;
+}
+
+#global_score_p_0, #global_score_p_1{
+    color: #e65757;
+    font-size: 30px;
+}
+
+.current_score{
+    font-weight: 300;
+    background-color: #e65757;
+    padding: 5px;
+    width: 150px;
+    height: 90px;
+}
+#current_score_p_0, #current_score_p_1{
+    color: #fff;
+    font-size: 30Px;
+}
+#player_0, #player_1{
+    font-size: 30px;
+}
+.modal-body{
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 30px;
+}
+@media screen and (min-width : 728px){
+    .game-2{
+        width: 80%;
+        flex-direction: row;
+        display: flex;
+        align-content: stretch;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .game{
+        background: linear-gradient(to left , #f7f7f7 50% , #ffffff 50%);
+    }
+    .dice-action{
+        margin-top: none;
+    }
 }
