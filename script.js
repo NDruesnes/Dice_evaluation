@@ -15,17 +15,34 @@ var players = [
      },
 ];
 var playersLength = players.length - 1;
-var currentPlayer = 0;
-var scoreWin = 10;
+var currentPlayer ;
+var scoreWin ;
+var namePlayer1;
+var namePlayer2;
+var indicator;
+
+function getName(namePlayer1, namePlayer2){
+    if(namePlayer1, namePlayer2){
+        $('#player_0').html(namePlayer1);
+        $('#player_1').html(namePlayer2);
+    } else {
+        $('#player_0').html('Joueur 1');
+        $('#player_1').html('Joueur 2');
+    }
+   
+}
 
 function newGame(){
-
+    getName(namePlayer1, namePlayer2);
     $('#dice').replaceWith('<img class="dice" id="dice" value=1 alt="dice 1" src="img/dice_1.svg"></img>');
     for(let i = 0; i < playersLength; i++){
         players[i].scoreCurrent = 0;
         players[i].scoreTotal = 0;
         //gerer le changement de joueur ?
         $('#player_'+[i]).css('font-weight', '+=300');
+        if($('.current-p-'+[i]).hasClass('not-displayed')){
+            removeClass('not-displayed');
+        } 
         $('#current_score_p_'+[i]).html(0);
         $('#global_score_p_'+[i]).html(0);
     }
@@ -66,13 +83,34 @@ function changePlayer() {
     getWinner();
     players[currentPlayer].scoreCurrent = 0;
     if(currentPlayer < playersLength){
+        $('#player_'+[currentPlayer]).css('font-weight', '-=300');
+        if(!$('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
+            $('.current-p-'+[currentPlayer]).addClass('not-displayed');
+        } 
         currentPlayer++;
+        $('#player_'+[currentPlayer]).css('font-weight', '+=300');
+        
+        if($('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
+            $('.current-p-'+[currentPlayer]).removeClass('not-displayed');
+        } 
+
     }else{
+        $('#player_'+[currentPlayer]).css('font-weight', '-=300');
+        if(!$('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
+            $('.current-p-'+[currentPlayer]).addClass('not-displayed');
+        } 
+
         currentPlayer = 0;
+        $('#player_'+[currentPlayer]).css('font-weight', '+=300');
+        if($('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
+            $('.current-p-'+[currentPlayer]).removeClass('not-displayed');
+        } 
+
     }
 }
 
 function getWinner(){
+    scoreWin = $('#point').val();
     if(players[currentPlayer].scoreTotal >= scoreWin){
         $("#winnerModal").modal('show');
        
@@ -95,12 +133,20 @@ function hold(){
 
 $(document).ready(function(){ 
 
+    currentPlayer = 0;
+  
+    
+    
     $('#rulesModal').modal('show');
 
     $('#new_game').click(function(){
+        $('#rulesModal').modal('show');
         newGame();
     })
     $('#go_button').click(function(){
+        namePlayer1 = $('#player-1-name').val();
+        namePlayer2 = $('#player-2-name').val();
+        getName(namePlayer1, namePlayer2);
         newGame();
     })
     $('#stop_game').click(function(){

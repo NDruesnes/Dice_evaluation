@@ -29,14 +29,14 @@ possibilité de donner un nbre point max -->
         </div>
         <div class="game-2">
             <div class="player">
-                <div >
-                    <p id="player_0" class="player_0">Joueur 1</p>
+                <div class="player_0">
+                    <p id="player_0" ></p><span class="current-p-0"><img src="img/Ellipse 19.png" alt="elispse" ></span>
                 </div>
                 <div class="score_p_0" >
                     <p id="global_score_p_0" >0</p>
                 </div>
                 <div class="current_score" >
-                    <p >current </p>
+                    <p>Tour</p>
                     <p id="current_score_p_0">0</p>
                 </div>
             </div>
@@ -64,20 +64,19 @@ possibilité de donner un nbre point max -->
                 </div>  
             </div>
             <div class="player">
-                <div >
-                    <p id="player_1">Joueur 2</p>
+                <div class="player_1">
+                    <p id="player_1" ></p><span class="current-p-1 not-displayed"><img class="current not-displayed"src="img/Ellipse 19.png" alt="elispse" ></span>
                 </div>
                 <div class="score_p_2" >
                     <p id="global_score_p_1">0</p>
                 </div>
                 <div class="current_score" >
-                    <p >current </p>
+                    <p>Tour</p>
                     <p id="current_score_p_1">0</p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Button trigger modal -->
   
   <!-- Modal -->
   <div class="modal show " id="rulesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -88,10 +87,18 @@ possibilité de donner un nbre point max -->
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h6>Le but est simple : arriver à 100 points avant son adversaire !</h6>
+          <h6>Le but est simple :<br> arriver à <input type="number" min="2" max="10000" value='10' id="point"> points avant son adversaire !</h6>
           <p>Vous avez un score global et un score temporaire.<br>
         Lancez le dé autant de fois que vous le souhaitez pour cumuler des points temporaires et cliquer sur garder pour les ajouter à votre score global. <br>
         Mais attention! Si le résultat du dé vaut 1, voous perdez tous vos points temporaires et c'est au joueur suivant de tenter sa chance ! </p>
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Joueur 1" id="player-1-name" aria-label="player-1-name">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Joueur 2" id="player-2-name" aria-label="player-2-name">
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
