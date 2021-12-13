@@ -1,9 +1,3 @@
-//fonction gagnant si atteint x points ok
-//fonction new game ok 
-// fonction stop game ok 
-//fonction nom joueur ok 
-//fonction pt max ok 
-//fonction current player = point rouge a coté du houeur +couleur plus foncé (style font-weight=700)
 var players = [
     {
        scoreTotal : 0,
@@ -20,20 +14,6 @@ var players = [
 var playersLength = players.length - 1;
 var currentPlayer;
 var scoreWin;
-var namePlayer1;
-var namePlayer2;
-
-
-// function setName(namePlayer1, namePlayer2){
-//     if(namePlayer1, namePlayer2){
-//         $('#player_0').html(namePlayer1);
-//         $('#player_1').html(namePlayer2);
-//     } else {
-//         $('#player_0').html('Joueur 1');
-//         $('#player_1').html('Joueur 2');
-//     }
-   
-// }
 
 function newGame(){
     $('#dice').replaceWith('<img class="dice" id="dice" value=1 alt="dice 1" src="images/dice_1.svg">');
@@ -44,8 +24,13 @@ function newGame(){
         players[i].scoreTotal = 0;
         $('#current_score_p_'+[i]).html(0);
         $('#global_score_p_'+[i]).html(0);
+    } 
+    if($('#player_'+[0]).css('font-weight') >= 400){
+        $('#player_'+[0]).css('font-weight', '400');
+    }else{
+        $('#player_'+[0]).css('font-weight', '+=300');
     }
-    $('#player_'+[0]).css('font-weight', '+=300');
+
     if($('.current-p-'+[0]).hasClass('not-displayed')){
         $('.current-p-'+[0]).removeClass('not-displayed');
     }
@@ -55,7 +40,7 @@ function newGame(){
     }
 }
 
-function stopGame(namePlayer1, namePlayer2){
+function stopGame(){
     if(players[0].scoreTotal > players[1].scoreTotal){
         $("#winnerModal").modal('show');
         $(".winner").html(players[0].name+ ' a gagné !');
@@ -89,28 +74,29 @@ function changePlayer() {
     updateScore();
     getWinner();
     players[currentPlayer].scoreCurrent = 0;
+    console.log($('#player_0').css);
     if(currentPlayer < playersLength){
         $('#player_'+[currentPlayer]).css('font-weight', '-=300');
-        if(!$('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
-            $('.current-p-'+[currentPlayer]).addClass('not-displayed');
-        } 
+            if(!$('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
+                $('.current-p-'+[currentPlayer]).addClass('not-displayed');
+            } 
         currentPlayer++;
-        $('#player_'+[currentPlayer]).css('font-weight', '+=300');
-        if($('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
-            $('.current-p-'+[currentPlayer]).removeClass('not-displayed');
-        } 
+            $('#player_'+[currentPlayer]).css('font-weight', '+=300');
+            if($('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
+                $('.current-p-'+[currentPlayer]).removeClass('not-displayed');
+            } 
         }else{
 
         $('#player_'+[currentPlayer]).css('font-weight', '-=300');
-        if(!$('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
-            $('.current-p-'+[currentPlayer]).addClass('not-displayed');
-        } 
+            if(!$('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
+                $('.current-p-'+[currentPlayer]).addClass('not-displayed');
+            } 
         currentPlayer = 0;
         $('#player_'+[currentPlayer]).css('font-weight', '+=300');
-        if($('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
-            $('.current-p-'+[currentPlayer]).removeClass('not-displayed');
-        } 
-    }
+            if($('.current-p-'+[currentPlayer]).hasClass('not-displayed')){
+                $('.current-p-'+[currentPlayer]).removeClass('not-displayed');
+            } 
+        }
     $('#dice').replaceWith('<img class="dice" id="dice" value=1 alt="dice 1" src="images/dice_1.svg">');
 
 }
@@ -121,7 +107,6 @@ function getWinner(){
         $("#winnerModal").modal('show');
 
         $(".winner").html(players[currentPlayer].name + ' a gagné !');
-
         newGame();
         } else {
         players[currentPlayer].scoreCurrent = 0;
@@ -151,38 +136,71 @@ function setName(){
     }
 }
 
+function checkInput(){
+    if(scoreWin < 2){
+        alert('hello');
+    }
+}
+
+// Restricts input for the given textbox to the given inputFilter.
+function setInputFilter(textbox, inputFilter) {
+    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+        console.log(event);
+        textbox.addEventListener(event, function() {
+            if (inputFilter(this.value)) {
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            } else {
+                this.value = "";
+            }
+        });
+    });
+}
+
 $(document).ready(function(){ 
 
     currentPlayer = 0;
+
+    // saisie seulement de chiffre dans la modale rulesModal
+    setInputFilter(document.getElementById("point"), function(value) {
+        return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 1000);
+    });
   
     $('#rulesModal').modal('show');
 
+    $('#rules').click(function(){
+        $('#rulesModal').modal('show');
+        
+    })
     $('#new_game').click(function(){
-        newGame();
-        // $('#rulesModal').modal('show');
+        $('#rulesModal').modal('show');
     })
 
     $('#new_game_after_win').click(function(){
-        newGame();
-        // $('#rulesModal').modal('show');
+        $('#rulesModal').modal('show');
+    
     })
 
-    $('#go_button').click(function(){
-        // namePlayer1 = $('#player-1-name').val();
-        // namePlayer2 = $('#player-2-name').val();
-        // setName(namePlayer1, namePlayer2);
+    $('#go_button').click(function(e){
+        if($('#point').val() <= 1){
+            $('#alertModal').modal('show');
+            $('#rulesModal').modal('show');
+        }
         setName();
         newGame();
     })
+
     $('#stop_game').click(function(){
-        stopGame(namePlayer1, namePlayer2);
+        stopGame();
     })
+
     $('#roll_dice').click(function(){
 
-        
-        // console.log('player ' + currentPlayer + ' - total: ' +  players[currentPlayer].scoreTotal + ' current:' + players[currentPlayer].scoreCurrent);
-        // console.log('joueur n=°'+currentPlayer);
-        //selectionne un nombre au hasard entre 1 et §, affiche le dés correspondant et ajoute lavaleur au current score
+        //selectionne un nombre au hasard entre 1 et 6, affiche le dés correspondant et ajoute lavaleur au current score
         var number = Math.floor(Math.random() * 6) + 1;
         switch(number){
             case 1 : 
