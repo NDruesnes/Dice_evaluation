@@ -15,6 +15,9 @@ body{
     width: 100vw;
 }
 
+.rules{
+    text-transform: none;
+}
 .game{
     background: linear-gradient(to top , #f7f7f7 50% , #ffffff 50%);
     height: 100%;

@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="img/png" href="images/icon_dice.png">
+  <meta name="description" content="Jeu de dé, le but est simple arriver à un nombre definir de points avant son adversaire !">
 </head>
 <body class="p-2">
   <div class="game" >
@@ -95,9 +96,9 @@
         </div>
         <div class="modal-body text-center p-4">
           <h6 class="p-2">Le but est simple :<br> arriver à <input type="text" value='10' id="point" class="p-1 m-1"> points avant son adversaire !</h6>
-          <p>Vous avez un score global et un score temporaire.<br>
+          <p class="rules">Vous avez un score global et un score temporaire.<br>
         Lancez le dé autant de fois que vous le souhaitez pour cumuler des points temporaires et cliquer sur garder pour les ajouter à votre score global. <br>
-        Mais attention! Si le résultat du dé vaut 1, voous perdez tous vos points temporaires et c'est au joueur suivant de tenter sa chance ! </p>
+        Mais attention! Si le résultat du dé vaut 1, vous perdez tous vos points temporaires et c'est au joueur suivant de tenter sa chance ! </p>
           <div class="row">
             <div class="col">
               <input type="text" class="form-control" maxlength="30" placeholder="Joueur 1" id="player-0-name" aria-label="player-0-name">
